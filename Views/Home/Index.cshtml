@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <button onclick="login()" class="signIn-btn">sign in</button>
+    <div><label>access token: </label><span>@Context.Session.GetString("access_token")</span></div>
+    <div><label>email: </label><span>@Context.Session.GetString("profile")</span></div>
+</div>
+
+<script>
+    const login = () => {
+        const uri = "https://login.microsoftonline.com/eebb4dd9-a155-4a43-9f1c-047474641f9c/oauth2/v2.0/authorize?client_id=bc30b589-c2ca-42ff-9b3d-e2b9d4091993&response_type=code&redirect_uri=http://localhost:3000/auth/signIn&response_mode=query&scope=https%3A%2F%2Fgraph.microsoft.com%2Fmail.read";
+        window.location.replace(uri);
+    }
+</script>
